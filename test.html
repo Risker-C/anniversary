@@ -2,11 +2,13 @@
 
 <head>
   <title>RoughJS Balloon Animation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <script src="static/js/rough.min.js"></script>
   <style>
     body {
       margin: 0;
-      overflow: hidden;
+      /*overflow: hidden;*/
       text-align: center;
     }
     h1 {
@@ -19,90 +21,227 @@
       padding: .5rem 2rem;
       background: white;
     }
+    .container {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transform-style: preserve-3d;
+      animation: divMove 5s ease 1s;
+    }
+    @keyframes divMove {
+      from{
+        transform: translateY(0px)
+      }
+      to{
+        transform: translateY(100px)
+      }
+    }
   </style>
 </head>
 
 <body>
-<h1>Balloons</h1>
-<script>
-  const extend = (base, ...extensions) => Object.assign({}, base, ...extensions)
-  const parseColor = ({ h, s, l, a }) => `hsla(${h},${s}%,${l}%,${a})`
-  const Color = extend.bind(null, { h: 0, s: 100, l: 100, a: 1 })
-  const Vector = extend.bind(null, { x: 0, y: 0 })
-  const Particle = extend.bind(null, {
-    pos: Vector(),
-    vel: Vector(),
-    angle: 0,
-    speed: 0,
-    radius: 0,
-    rotation: 0,
-    color: Color()
-  })
-  const colors = [
-    Color({ h: 20, s: 100, l: 50 }),
-    Color({ h: 200, l: 50 }),
-    Color({ h: 300, l: 50 }),
-    Color({ h: 100, l: 40 }),
-  ]
-  const animationLoop = scope => {
-    if (scope.animation) {
-      scope.animation(animationLoop.bind(null, scope))
-    }
-    const { ctx } = scope
-    const { canvas } = ctx
-    const rc = rough.canvas(canvas)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    scope.particles.map((p, i) => {
-      p.pos.y -= p.speed
-      if (i % 2) {
-        p.pos.x = p.pos.x + Math.sin(p.angle) * .2
-      } else {
-        p.pos.x = p.pos.x - Math.cos(p.angle) * .2
-      }
-      p.angle += .01
-      rc.circle(p.pos.x, p.pos.y, p.radius, {
-        fill: parseColor(p.color),
-        roughness: Math.random() * 1.5,
-        hachureGap: p.hachureGap,
-        hachureAngle: p.hachureAngle
-      })
-      // rc.line(p.pos.x, p.pos.y + p.radius * 1.2, p.pos.x, p.pos.y + p.radius / 2, {
-      //   bowing: Math.random() * 3
-      // })
-      if (p.pos.y + p.radius * 3 < 0) {
-        p.pos.y = canvas.height + p.radius * 3
-        p.pos.x = Math.random() * (canvas.width - p.radius)
-      }
-    })
-  }
-  const scope = {
-    animation: requestAnimationFrame.bind(null),
-    ctx: document.createElement('canvas').getContext('2d'),
-    rotation: 0,
-    particles: []
-  }
-  ~(scope => {
-    const { ctx: { canvas } } = scope
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-    document.body.appendChild(canvas)
-    let particleCount = 60
-    while (particleCount--) {
-      scope.particles.push(Particle({
-        pos: {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height
-        },
-        speed: Math.random() + .2,
-        radius: Math.random() * 60 + 20,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        hachureAngle: Math.random() * 90,
-        hachureGap: Math.random() * 8
-      }))
-    }
-    animationLoop(scope)
-  })(scope)
-</script>
+<div class="container"></div>
+<!--<h1>Balloons</h1>-->
+<!--<div><mark><time datetime="2018-11-01">2018-11-1</time></mark></div>-->
+<!--<div><progress max="100" value="0"></progress><span>0%</span></div>-->
+<!--<div><meter min="0" low="30" high="80" max="100" optimum="100" value="1"></meter><span>0%</span></div>-->
+<!--<div>-->
+  <!--<fieldset style="width: 500px;margin: 0 auto">-->
+    <!--<legend>来真的</legend>-->
+    <!--<form action="#">-->
+      <!--Color: <input type="color"><br>-->
+      <!--url: <input type="url" required oninput="console.log('oninput')" oninvalid="console.log(event.path[0].validationMessage)"><br>-->
+      <!--range: <input type="range"><br>-->
+      <!--date: <input type="date"><br>-->
+      <!--time: <input type="time"><br>-->
+      <!--datetime: <input type="datetime"><br>-->
+      <!--week: <input type="week"><br>-->
+      <!--month: <input type="month"><br>-->
+      <!--datetime-local: <input type="datetime-local"><br>-->
+      <!--city: <input type="text" list="cites">-->
+      <!--<datalist id="cites" autocomplete>-->
+        <!--<option value="beijing">beijing</option>-->
+        <!--<option value="tianjin">tianjin</option>-->
+        <!--<option value="shanghai">shanghai</option>-->
+      <!--</datalist>-->
+      <!--&lt;!&ndash;<input type="button" value="按钮" onclick="">&ndash;&gt;-->
+      <!--<button>button</button>-->
+    <!--</form>-->
+  <!--</fieldset>-->
+<!--</div>-->
+<!--<div>-->
+  <!--<video style="height: 500px" src="./05video.mp4"  controls poster="./710.png"></video>-->
+<!--</div>-->
+<!--<div><button>播放</button><button>静音</button><button>1X</button><button>快进10s</button></div>-->
+
+<!--<div><button>获取位置</button></div>-->
+<!--<script>-->
+  <!--window.onload = function(){-->
+    <!--var progress = document.getElementsByTagName('progress')[0]-->
+    <!--var span = document.getElementsByTagName('span')-->
+    <!--var meter  = document.getElementsByTagName('meter')[0]-->
+    <!--var button  = document.getElementsByTagName('button')-->
+    <!--var vedio = document.getElementsByTagName('video')[0]-->
+    <!--var setTime = window.setInterval(function () {-->
+      <!--progress.value++-->
+      <!--meter.value++-->
+      <!--span[0].innerHTML = progress.value + '%'-->
+      <!--span[1].innerHTML = progress.value + '%'-->
+      <!--if (progress.value >= progress.max){-->
+        <!--clearTimeout(setTime)-->
+      <!--}-->
+    <!--}, 100)-->
+    <!--console.dir(vedio)-->
+    <!--button[1].onclick = function(){-->
+      <!--console.log(vedio.paused)-->
+      <!--if (!vedio.paused){-->
+        <!--button[1].innerHTML = '播放'-->
+        <!--vedio.pause()-->
+      <!--} else {-->
+        <!--button[1].innerHTML = '暂停'-->
+        <!--vedio.play()-->
+      <!--}-->
+    <!--}-->
+    <!--button[2].onclick = function () {-->
+      <!--if(vedio.muted) {-->
+        <!--button[2].innerHTML = '放音'-->
+      <!--} else {-->
+        <!--button[2].innerHTML = '静音'-->
+      <!--}-->
+      <!--vedio.muted = !vedio.muted-->
+    <!--}-->
+    <!--button[3].onclick = function () {-->
+      <!--switch (vedio.playbackRate) {-->
+        <!--case 1:-->
+          <!--button[3].innerHTML = '1.5X'-->
+          <!--vedio.playbackRate = 1.5;-->
+          <!--break-->
+        <!--case 1.5:-->
+          <!--button[3].innerHTML = '2X'-->
+          <!--vedio.playbackRate = 2-->
+          <!--break-->
+        <!--case 2:-->
+          <!--button[3].innerHTML = '2.5X'-->
+          <!--vedio.playbackRate = 2.5-->
+          <!--break-->
+        <!--case 2.5:-->
+          <!--button[3].innerHTML = '3X'-->
+          <!--vedio.playbackRate = 3-->
+          <!--break-->
+        <!--case 3:-->
+          <!--button[3].innerHTML = '3.5X'-->
+          <!--vedio.playbackRate = 3.5-->
+          <!--break-->
+        <!--case 3.5:-->
+          <!--button[3].innerHTML = '4X'-->
+          <!--vedio.playbackRate = 4-->
+          <!--break-->
+        <!--case 4:-->
+          <!--button[3].innerHTML = '4.5X'-->
+          <!--vedio.playbackRate = 4.5-->
+          <!--break-->
+        <!--case 4.5:-->
+          <!--button[3].innerHTML = '5X'-->
+          <!--vedio.playbackRate = 5-->
+          <!--break-->
+        <!--case 5:-->
+          <!--button[3].innerHTML = '1X'-->
+          <!--vedio.playbackRate = 1-->
+          <!--break-->
+        <!--default:-->
+          <!--break-->
+      <!--}-->
+    <!--}-->
+    <!--button[4].onclick = function () {-->
+      <!--vedio.duration = 30*60+1-->
+      <!--console.log(vedio.duration)-->
+      <!--// vedio.currentTime =  10-->
+      <!--console.log(vedio.currentTime)-->
+    <!--}-->
+    <!--button[5].onclick = function () {-->
+
+    <!--}-->
+  <!--}-->
+<!--</script>-->
+<!--<script>-->
+  <!--const extend = (base, ...extensions) => Object.assign({}, base, ...extensions)-->
+  <!--const parseColor = ({ h, s, l, a }) => `hsla(${h},${s}%,${l}%,${a})`-->
+  <!--const Color = extend.bind(null, { h: 0, s: 100, l: 100, a: 1 })-->
+  <!--const Vector = extend.bind(null, { x: 0, y: 0 })-->
+  <!--const Particle = extend.bind(null, {-->
+    <!--pos: Vector(),-->
+    <!--vel: Vector(),-->
+    <!--angle: 0,-->
+    <!--speed: 0,-->
+    <!--radius: 0,-->
+    <!--rotation: 0,-->
+    <!--color: Color()-->
+  <!--})-->
+  <!--const colors = [-->
+    <!--Color({ h: 20, s: 100, l: 50 }),-->
+    <!--Color({ h: 200, l: 50 }),-->
+    <!--Color({ h: 300, l: 50 }),-->
+    <!--Color({ h: 100, l: 40 }),-->
+  <!--]-->
+  <!--const animationLoop = scope => {-->
+    <!--if (scope.animation) {-->
+      <!--scope.animation(animationLoop.bind(null, scope))-->
+    <!--}-->
+    <!--const { ctx } = scope-->
+    <!--const { canvas } = ctx-->
+    <!--const rc = rough.canvas(canvas)-->
+    <!--ctx.clearRect(0, 0, canvas.width, canvas.height)-->
+    <!--scope.particles.map((p, i) => {-->
+      <!--p.pos.y -= p.speed-->
+      <!--if (i % 2) {-->
+        <!--p.pos.x = p.pos.x + Math.sin(p.angle) * .2-->
+      <!--} else {-->
+        <!--p.pos.x = p.pos.x - Math.cos(p.angle) * .2-->
+      <!--}-->
+      <!--p.angle += .01-->
+      <!--rc.circle(p.pos.x, p.pos.y, p.radius, {-->
+        <!--fill: parseColor(p.color),-->
+        <!--roughness: Math.random() * 1.5,-->
+        <!--hachureGap: p.hachureGap,-->
+        <!--hachureAngle: p.hachureAngle-->
+      <!--})-->
+      <!--// rc.line(p.pos.x, p.pos.y + p.radius * 1.2, p.pos.x, p.pos.y + p.radius / 2, {-->
+      <!--//   bowing: Math.random() * 3-->
+      <!--// })-->
+      <!--if (p.pos.y + p.radius * 3 < 0) {-->
+        <!--p.pos.y = canvas.height + p.radius * 3-->
+        <!--p.pos.x = Math.random() * (canvas.width - p.radius)-->
+      <!--}-->
+    <!--})-->
+  <!--}-->
+  <!--const scope = {-->
+    <!--animation: requestAnimationFrame.bind(null),-->
+    <!--ctx: document.createElement('canvas').getContext('2d'),-->
+    <!--rotation: 0,-->
+    <!--particles: []-->
+  <!--}-->
+  <!--~(scope => {-->
+    <!--const { ctx: { canvas } } = scope-->
+    <!--canvas.width = window.innerWidth-->
+    <!--canvas.height = window.innerHeight-->
+    <!--document.body.appendChild(canvas)-->
+    <!--let particleCount = 60-->
+    <!--while (particleCount&#45;&#45;) {-->
+      <!--scope.particles.push(Particle({-->
+        <!--pos: {-->
+          <!--x: Math.random() * canvas.width,-->
+          <!--y: Math.random() * canvas.height-->
+        <!--},-->
+        <!--speed: Math.random() + .2,-->
+        <!--radius: Math.random() * 60 + 20,-->
+        <!--color: colors[Math.floor(Math.random() * colors.length)],-->
+        <!--hachureAngle: Math.random() * 90,-->
+        <!--hachureGap: Math.random() * 8-->
+      <!--}))-->
+    <!--}-->
+    <!--animationLoop(scope)-->
+  <!--})(scope)-->
+<!--</script>-->
 </body>
 
 </html>

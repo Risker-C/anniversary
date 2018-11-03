@@ -15,6 +15,11 @@ export default new Router({
       path: '/letter',
       name: 'letter',
       component: () => import('@/components/letter')
+    },
+    {
+      path: '/photos',
+      name: 'photos',
+      component: () => import('@/components/photos')
     }
   ]
 })
