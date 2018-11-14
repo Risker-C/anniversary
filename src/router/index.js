@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import welcomePage from '@/components/welcomePage'
 
 Vue.use(Router)
 
@@ -9,17 +8,12 @@ export default new Router({
     {
       path: '/',
       name: 'welcomePage',
-      component: welcomePage
+      component: () => import('@/components/welcomePage')
     },
     {
       path: '/letter',
       name: 'letter',
       component: () => import('@/components/letter')
-    },
-    {
-      path: '/photos',
-      name: 'photos',
-      component: () => import('@/components/photos')
     }
   ]
 })

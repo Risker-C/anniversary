@@ -2,7 +2,7 @@
     <div>
       <div class="App animated" v-bind:class="isShow ? 'bounceInUp' : 'bounceOutUp'" >
         <div class="date">
-          <p>我们已经一起走过了:
+          <p>我们已经走过了:
             <span class="date-text">{{date.d}}</span>天
             <span class="date-text">{{date.hour}}</span>小时
             <span class="date-text">{{date.minute}}</span>分
@@ -10,17 +10,20 @@
           </p>
         </div>
         <div id="autotype" >
-          <h1 style="font-weight:900">...！</h1>
-          <!--<p >在煽情开始之前，先放首歌当背景音乐吧！Music!</p>-->
-          <!--<p>今天是我们两周年的纪念日，从2016年11月22日到现在，我们一起经历了许许多多的事情，-->
-            <!--有欢笑也有争吵，也曾因为一些事情闹过分手，但是我们都走过来了。</p>-->
-          <!--<p>最后....！</p>-->
+          <h1 style="font-weight:900">亲爱的影~</h1>
+          <p>在信的开始，请允许我先为你放一首歌!</p>
+          <p>今天是我们在一起两周年的纪念日，从2016年11月22日走来，我们经历了很多。这其中，有欢笑也有争吵，也曾经差点错过彼此，但是你我都没有选择离开。</p>
+          <p>感谢你当时的选择,也庆幸我的坚持。寒冷的季节不再寒冷,燥热的夏日也能平静。春天赏花,秋风观景。</p>
+          <p>纵使我错漏百出,时而精分，时而躁动。你却总是我心中的牵挂,身体的软肋。你，是我的定心丸。</p>
+          <p>在一起的日子里，我们走过多个城市，看过几份风情。但是最美的景色只有你在身边。你就是心中最美的景。</p>
+          <p>理解与包容,我们携手前行。挫折和挑战，我们并肩作战。爱你,是我奋战的动力核心。</p>
+          <p>最后,未来的日子,与你相伴</p>
           <div style="text-align: right">
-            <p>爱你...</p>
+            <p>爱你的小黑</p>
             <p>2018年11月22日</p>
           </div>
         </div>
-        <audio id="audio" ref="audio" :src="musicU" controls>
+        <audio id="audio" ref="audio" :src="musicU" >
           O! 你的浏览器不支持播放音乐哦！
         </audio>
       </div>
@@ -45,17 +48,17 @@
         // 音乐播放计数器
         setTimePlay: '',
         musicU: '/static/gbqq.mp3',
-        musicUrl: 'http://fs.w.kugou.com/201810311027/c012e96e71ba3c2d8a628247f48a5830/G063/M03/06/11/34YBAFdskzmAUMlOADSMOxgm3l4714.mp3',
+        // musicUrl: 'http://fs.w.kugou.com/201810311027/c012e96e71ba3c2d8a628247f48a5830/G063/M03/06/11/34YBAFdskzmAUMlOADSMOxgm3l4714.mp3',
         imgList: [
-          'http://b276.photo.store.qq.com/psb?/V12U1yim4bWQf8/iG*S6GGX6s.aBMxccWb6XUKa17nolNiSf5vtSVJvEJs!/b/dBQBAAAAAAAA&bo=0AIABdACAAURCT4!&rf=viewer_4',
-          'http://b276.photo.store.qq.com/psb?/V12U1yim4bWQf8/iG*S6GGX6s.aBMxccWb6XUKa17nolNiSf5vtSVJvEJs!/b/dBQBAAAAAAAA&bo=0AIABdACAAURCT4!&rf=viewer_4',
-          'http://b287.photo.store.qq.com/psb?/V12U1yim4bWQf8/DJ3qOmasmyqS1D.BtqD3jzyLZzSF8gT917GLRIJedDc!/b/dB8BAAAAAAAA&bo=0AIABdACAAURGS4!&rf=viewer_4',
-          'http://b287.photo.store.qq.com/psb?/V12U1yim4bWQf8/DJ3qOmasmyqS1D.BtqD3jzyLZzSF8gT917GLRIJedDc!/b/dB8BAAAAAAAA&bo=0AIABdACAAURGS4!&rf=viewer_4',
-          'http://b287.photo.store.qq.com/psb?/V12U1yim4bWQf8/DJ3qOmasmyqS1D.BtqD3jzyLZzSF8gT917GLRIJedDc!/b/dB8BAAAAAAAA&bo=0AIABdACAAURGS4!&rf=viewer_4',
-          'http://b66.photo.store.qq.com/psb?/V12U1yim4bWQf8/arHZwoCM9qkpQo*zWT.aQ2Ck81D4XaCNozFxXrp45gg!/b/dEIAAAAAAAAA&bo=0AIABdACAAURGS4!&rf=viewer_4',
-          'http://b272.photo.store.qq.com/psb?/V12U1yim4bWQf8/9luXOKZpypvUV38UJ*sGW2Vqeri5UTydiKf8ScIyLgU!/b/dBABAAAAAAAA&bo=0AIABdACAAURGS4!&rf=viewer_4',
-          'http://b286.photo.store.qq.com/psb?/V12U1yim4bWQf8/ww9oKggIQwbLPbOlrqgmkRk1pquf9wjbhYlQtRkP8p4!/b/dB4BAAAAAAAA&bo=AAWrBqALgA8ROYI!&rf=viewer_4',
-          'http://b257.photo.store.qq.com/psb?/V12U1yim4bWQf8/fNcr019oXoffIcWME.6lI8bUCpkAMVvs*W.JmwezGvA!/b/dAEBAAAAAAAA&bo=AAWrBqALgA8RGaI!&rf=viewer_4'
+          '/static/images/photo1.jpg',
+          '/static/images/photo2.jpeg',
+          '/static/images/photo3.jpeg',
+          '/static/images/photo4.jpg',
+          '/static/images/photo5.jpeg',
+          '/static/images/photo6.jpeg',
+          '/static/images/photo7.jpeg',
+          '/static/images/photo8.jpeg',
+          '/static/images/photo9.jpeg'
         ],
         deg: 0,
         distance: 300,
@@ -118,7 +121,7 @@
       music () {
         this.$nextTick(() => {
           const audio = this.$refs.audio
-          this.setTimePlay = setTimeout( ()=> audio.play(), 8500)
+          this.setTimePlay = setTimeout( ()=> audio.play(), 6500)
         })
       },
       handleClick () {
